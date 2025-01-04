@@ -1,0 +1,94 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h3{
+    color: #B92B27;
+}
+
+#login{
+    background-color:white;
+}
+
+#signup{
+    background-color: #B92B27;
+}
+
+.upvote{
+    background-color: green ;
+    color: white ;
+}
+
+#myID p{
+    color: green;
+}
+
+.post a{
+    color:purple;
+    background-color: yellowgreen;
+}
+
+nav ul li{
+    color: aqua;
+}
+
+.upvote + button{
+    background-color: cornflowerblue;
+    color: white;
+}
+
+span > button{
+    border-radius: 7px;
+    border-color: beige;
+}
+
+div > input{
+    background-color:   rgb(198, 207, 207);
+}
+
+input[type="text"]{
+    color: red;
+}
+
+input[type="password"]{
+    color: green;
+}
+
+input[type]{
+    background-color: whitesmoke;
+}
+
+input[type]:hover{
+    background-color: darkgray;
+    color: white;
+}
+
+h3:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+button:active{
+    background-color: black;
+}
+
+input[type="radio"]:checked + label {
+    color: green;
+    font-weight: bold;
+}
+
+.post:nth-of-type(2){
+    background-color: beige;
+}
+
+h1::first-letter{
+    color:#861713
+}
+
+.outside::first-line{
+    color: purple;
+}
+
+.outside::selection{
+    background-color: rgb(184, 184, 79);
+}
