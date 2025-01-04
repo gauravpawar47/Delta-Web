@@ -90,5 +90,5 @@ h1::first-letter{
 }
 
 .outside::selection{
-    background-color: rgb(184, 184, 79);
+    background-color:   rgb(184, 184, 79);
 }
