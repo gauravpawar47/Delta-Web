@@ -1,0 +1,27 @@
+.task1{
+    height: 150px;
+    width: 300px;
+    background-color: grey;
+    margin-top: 20px;
+    margin-right: 1em;
+    margin-bottom: 40px;
+    margin-left: 2em;
+    padding: 1em;
+}
+
+.task2{
+    height: 100px;
+    width: 100px;
+    background-color: pink;
+    border: 2px solid black;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.list{
+    display: inline-block;
+}
+
+ul{
+    list-style: disc inside;
+}
