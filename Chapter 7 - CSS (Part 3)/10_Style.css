@@ -1,0 +1,9 @@
+div{
+    height: 250px;
+    width: 250px;
+    border: 2px solid rgb(255, 36, 30);
+    border-radius: 10px;
+    background-color: rgb(255, 39, 39);
+    margin: 10px;
+    display: inline-block;
+}
