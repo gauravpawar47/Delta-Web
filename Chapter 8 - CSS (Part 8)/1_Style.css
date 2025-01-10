@@ -1,0 +1,9 @@
+div{
+    height: 250px;
+    width: 250px;
+    background-color: rgba(223, 18, 18, 0.5);
+}
+
+.id1{
+    opacity: 0.5;
+}
