@@ -1,0 +1,25 @@
+#container{
+    height: 300px;
+    width: 1000px;
+    background-color: azure;
+    margin: 10px auto;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+    flex-wrap: wrap;
+    align-content: space-evenly;
+    /* align-self: flex-end; To pull down particular Id or element */
+}
+
+h1{
+    text-align: center;
+}
+
+#container div{
+    height: 50px;
+    width: 300px;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
