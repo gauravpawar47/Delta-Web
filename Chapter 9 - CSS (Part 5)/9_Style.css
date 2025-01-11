@@ -16,10 +16,18 @@ h1{
 
 #blue{
     flex-basis: 50px;
+    flex-grow: 2;
+    max-width: 400px;
 }
 
 #red{
-    flex-basis: 250px;
+    flex-basis: 400px;
+    flex-grow: 3;
+    max-width: 650px;
+}
+
+#violet{
+    flex: 2 2 400px;
 }
 
 #container div{
