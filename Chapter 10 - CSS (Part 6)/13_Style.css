@@ -1,0 +1,30 @@
+h2{
+  color: rgb(199, 54, 2);
+}
+
+span{
+  color: rgba(104, 28, 0, 0.829)  ;
+}
+
+#pets{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+}
+
+.card{
+  display: flex;
+  flex-wrap: wrap;
+  height: 600px;
+  width: 400px;
+  border: 2px solid black;
+  border-radius: 5%;
+  padding: 10px;
+}
+
+img{
+  height: 300px;
+  width: 400px;
+  border-radius: 5%;
+  background-size: cover;
+}

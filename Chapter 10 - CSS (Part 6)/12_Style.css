@@ -1,0 +1,39 @@
+.heading{
+    background-color: yellow;
+    border: 2px solid black;
+}
+
+.hidden1{
+    height: 200px;
+    width: 200px;
+    display: none;
+}
+
+.hidden2{
+    height: 200px;
+    width: 200px;
+    display: none;
+}
+
+@media (max-width: 400px) {
+    .heading{
+        background-color: red;
+        color: white;
+    }
+
+    .hidden1{
+        display: grid;
+        place-items: center;
+        background-color: blue;
+        color: white
+    }
+}
+
+@media (orientation: landscape) {
+    .hidden2{
+        display: grid;
+        place-items: center;
+        background-color: yellow;
+        color: white
+    }
+}
