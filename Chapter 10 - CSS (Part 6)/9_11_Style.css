@@ -1,0 +1,56 @@
+.container{
+    height: 200px;
+    width: 200px;
+    margin: 10px auto;
+    background: rgb(194, 194, 194);
+    border-radius: 10%;
+    display: grid;
+    place-items: center;
+}
+
+.container:hover{
+    animation: changeBg 1s ease-in-out 0s infinite alternate;
+}
+
+button{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    border-radius: 10%;
+    border: 2px solid rgb(97, 97, 97);
+    color:black;
+    background-color: rgb(148, 147, 147);
+    font-size: 1em;
+}
+
+button:hover{
+    animation-name: buttonCSS;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-direction: normal;
+}
+
+@keyframes buttonCSS{
+    from{
+        font-size: 1em;
+        height: 30px;
+        width: 50px;
+    }   
+
+    to{
+        font-size: 1.5em;
+        width: 70px;
+        height: 45px;
+    }
+}
+
+@keyframes changeBg {
+    0%{
+        background: rgb(194, 194, 194);
+    }   
+    100%{
+        background: rgb(231, 230, 230);
+    }
+}
