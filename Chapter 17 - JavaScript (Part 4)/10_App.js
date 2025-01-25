@@ -1,6 +1,10 @@
-let arr = ["1", "2", "3", "4", "5"];
-
-for(let i = 0; i < arr.length; i++)
+let i = 1;
+while(i <= 5)
 {
-    console.log(i, arr[i]);
+    if(i == 4)
+    {
+        break;
+    }
+    console.log(i); 
+    i++;
 }
