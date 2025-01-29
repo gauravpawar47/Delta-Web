@@ -1,5 +1,3 @@
-// 1. This Keyword
-
 const student ={
     name: "Gaurav Pawar",
     age: 20,
