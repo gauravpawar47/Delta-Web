@@ -57,8 +57,30 @@ let heading = document.querySelector("h1");
 heading.style.color = 'red';
 heading.style.backgroundColor = 'purple';
 
-let links = document.querySelectorAll(".box a")
+let links = document.querySelectorAll("a")
 for(link of links)
 {
     link.style.color = "green";
 }
+
+// 12.Classlist Property
+
+let box = document.querySelector("p");
+console.log("Box Class   : ", box.classList);
+
+box.classList.add("green");
+console.log("Box Updated : ", box.classList);
+
+box.classList.add("back");
+console.log("Box Updated : ", box.classList);
+
+console.log("Box Contains Green : ", box.classList.contains("green"));
+
+box.classList.remove("green");
+console.log("Removed Updated : ", box.classList);
+
+box.classList.toggle("check1");
+console.log("Added Using Toggle   : ", box.classList);
+
+box.classList.toggle("check1");
+console.log("Removed Using Toggle : ", box.classList);
