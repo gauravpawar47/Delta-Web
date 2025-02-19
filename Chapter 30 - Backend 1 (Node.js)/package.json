@@ -1,0 +1,12 @@
+{
+  "name": "ch30",
+  "version": "1.0.0",
+  "main": "13_Import_Modules.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gaurav Pawar",
+  "license": "ISC",
+  "description": "",
+  "type": "module"
+}
