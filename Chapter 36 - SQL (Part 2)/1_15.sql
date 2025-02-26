@@ -1,0 +1,163 @@
+SET SQL_SAFE_UPDATES = 0;
+CREATE DATABASE CH_38;
+USE CH_38;
+
+-- 1 - 2  
+CREATE TABLE TABLE_1(
+	id INT UNIQUE,
+    age INT,
+    name VARCHAR(30) NOT NULL,
+    followers INT DEFAULT 0,
+    following INT DEFAULT 0,
+    CONSTRAINT age_check CHECK (age >= 18),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE TABLE_12(
+	id INT PRIMARY KEY,
+    content VARCHAR(100),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES TABLE_11_12(id)
+);
+
+INSERT INTO TABLE_1
+(id, age, name, followers, following)
+VALUES 
+(66, 20, 'SOMESH GAIKWAD', 1200, 10),
+(67, 21, 'GAURAV PAWAR', 150, 100),
+(68, 22, 'PRATIK NIKAM', 1500, 10),
+(69, 20, 'ADITYA SADAMARE', 140, 1000),
+(70, 23, 'SHIVRAM PAWAR', 70, 180);
+
+INSERT INTO TABLE_12
+(id, content, user_id)
+VALUES
+(1, 'HOW I CRACKED MICROSOFT IN 1ST ATTEMPT', 67),
+(2, 'MY FIRST ISRO INTERNSHIP EXPERIENCE', 68),
+(3, 'YOU CANT SEE ME', 69);
+
+-- 3 - FREQUENTLY USED OPERATORS
+SELECT * FROM TABLE_1 WHERE followers > 200;
+SELECT * FROM TABLE_1 WHERE age + 1 = 21  AND followers > 1000;
+SELECT name FROM TABLE_1 WHERE followers BETWEEN 300 AND 2000;
+SELECT * FROM TABLE_1 WHERE name IN ('GAURAV PAWAR');
+SELECT * FROM TABLE_1 WHERE name NOT IN ('GAURAV PAWAR');
+
+-- 4 - LIMIT CLAUSE
+SELECT * FROM TABLE_1 LIMIT 2;
+
+-- 5 - ORDER BY CLAUSE 
+SELECT * FROM TABLE_1 ORDER BY following ASC;
+SELECT * FROM TABLE_1 ORDER BY following DESC;
+
+-- 6 - AGGREGATE FUNCTIONS
+SELECT AVG(followers) FROM TABLE_1;
+SELECT MAX(followers) FROM TABLE_1;
+SELECT MIN(followers) FROM TABLE_1;
+SELECT COUNT(followers) FROM TABLE_1;
+SELECT SUM(followers) FROM TABLE_1;
+
+-- 7 - GROUP BT CLAUSE
+
+SELECT age,COUNT(id) FROM TABLE_1 GROUP BY age; 
+SELECT age, MAX(followers) FROM TABLE_1 GROUP BY age;
+
+-- 8 - HAVING CLAUSE 
+SELECT age, MAX(followers) FROM TABLE_1 GROUP BY age HAVING age > 21;
+
+-- 10- UPDATE TABLE
+UPDATE TABLE_1 SET name='PRUTHVIRAJ PATIL' WHERE id = 69;
+SELECT * FROM TABLE_1; 
+
+-- 11 - DELETE TABLE
+DELETE FROM TABLE_1 WHERE id = 69;
+SELECT * FROM TABLE_1;
+
+-- 12 - ALTER TABLE
+
+ALTER TABLE TABLE_1 ADD COLUMN city VARCHAR(25) DEFAULT "NASHIK";
+SELECT * FROM TABLE_1; 
+
+ALTER TABLE TABLE_1 ADD COLUMN city VARCHAR(25) DEFAULT "NASHIK";
+SELECT * FROM TABLE_1; 
+	
+ALTER TABLE TABLE_1 RENAME TO TABLE_;
+SELECT * FROM TABLE_;
+
+ALTER TABLE TABLE_ CHANGE COLUMN city home_city VARCHAR(25) DEFAULT "MUMBAI";
+SELECT * FROM TABLE_;
+
+ALTER TABLE table_ MODIFY home_city VARCHAR(30) DEFAULT "PUNE";
+INSERT INTO table_ (id, age, name, followers, following) VALUES (700, 23, 'SARPESH PATIL', 7000, 180); 
+
+SELECT * FROM table_;
+
+-- 13 - TRUNCATE TABLE 
+
+TRUNCATE TABLE table_;
+SELECT * FROM table_;
+
+-- 14 - Pracitce Questions 
+
+CREATE DATABASE DYPIEMR;
+USE DYPIEMR;
+
+CREATE TABLE teacher(
+	id INT UNIQUE,
+	name VARCHAR(30) NOT NULL,
+    subject VARCHAR(30) UNIQUE,
+    salary INT NOT NULL
+); 
+
+INSERT INTO teacher 
+(id, name, subject, salary)
+VALUES
+(23, 'AJAY', 'MATH', 50000),
+(47, 'BHARAT', 'ENGLISH', 60000),
+(18, 'CHETAN', 'CHEMISTRY', 45000),
+(9, 'DIVYA', 'PHYSICS', 75000);
+
+SELECT * FROM teacher;
+SELECT name from teacher WHERE salary > 55000;
+
+ALTER TABLE teacher CHANGE salary ctc INT;
+UPDATE teacher SET ctc = ctc + ctc * 0.25; 
+SELECT *  FROM teacher;
+
+ALTER TABLE teacher ADD COLUMN city VARCHAR(30) DEFAULT "GURGOAN";
+SELECT *  FROM teacher;
+
+ALTER TABLE teacher DROP COLUMN city;
+SELECT *  FROM teacher;
+
+-- 15 - Practice Questions
+
+CREATE TABLE student(
+	roll INT UNIQUE,
+	name VARCHAR(30) NOT NULL,
+    city VARCHAR(30) NOT NULL,
+    marks INT NOT NULL
+); 
+
+INSERT INTO student 
+(roll, name, city, marks)
+VALUES
+(110, 'ADAM', 'DELHI', 76),
+(108, 'BOB', 'MUMBAI', 65),
+(124, 'CASEY', 'PUNE', 94),
+(112, 'DUKE', 'PUNE', 80);
+
+SELECT * FROM student WHERE marks >= 75;
+SELECT DISTINCT city FROM student;
+SELECT city FROM student GROUP BY city;
+
+SELECT city, MAX(marks) FROM student GROUP BY city;
+SELECT AVG(marks) FROM student;	
+
+ALTER TABLE student ADD COLUMN grade VARCHAR(2);
+
+UPDATE student SET grade = 'O' WHERE marks >= 80;
+UPDATE student SET grade = 'A' WHERE marks >= 70 AND marks < 80;
+UPDATE student SET grade = 'B' WHERE marks >= 60 AND marks < 70;
+
+SELECT * FROM student;  
