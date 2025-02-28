@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+</head>
+<body>
+    <h2>Editing: <%= user.email %></h2>
+    <form method="POST" action="/user/<%= user.id %>?_method=PATCH">
+        <input type="hidden" name="_method" value="PATCH">  <!-- ✅ Method Override -->
+    
+        <label>Username:</label>
+        <input type="text" name="username" value="<%= user.username %>">
+    
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="New Password">
+    
+        <button type="submit">Update</button>
+    </form>    
+</body>
+</html>
