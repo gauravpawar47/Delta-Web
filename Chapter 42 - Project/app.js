@@ -67,19 +67,13 @@ app.get("/listings/:id", async (req, res) => {
   res.render("./listings/new.ejs");
 });
 
-// app.get("/testListing", async (req, res) => {
-//   let sampleListing = new Listing({
-//     title: "My Home",
-//     description: "By The Beach",
-//     price: 1200,
-//     location: "Calangute, Goa",
-//     country: "India",
-//   });
-
-//   await sampleListing.save();
-//   console.log("Sample Was Saved");
-//   res.send("Sample Test Was Saved");
-// });
+// Delte Route
+app.delete("/listings/:id", async (req, res) => {
+  let { id } = req.params;
+  let delListing = await Listing.findByIdAndDelete(id);
+  console.log(delListing);
+  res.redirect("/listings");
+});
 
 app.listen(port, () => {
   console.log("App is Running");
