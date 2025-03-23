@@ -3,6 +3,7 @@ const app = express();
 const port = 8080;
 const mongoose = require("mongoose");
 const Listing = require("./models/listing");
+const path = require("path");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderLust";
 async function main() {
@@ -20,6 +21,17 @@ main()
 app.get("/", (req, res) => {
   res.send("Hi I'm Root");
 });
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+// Index Route
+app.get("/listings", async (req, res) => {
+  const allListings = await Listing.find({});
+  res.render("./listings/index.ejs", { allListings });
+});
+
+// Show Route
 
 // app.get("/testListing", async (req, res) => {
 //   let sampleListing = new Listing({
