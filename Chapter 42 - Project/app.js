@@ -42,10 +42,14 @@ app.get("/listings", async (req, res) => {
 });
 
 // Create Route - Add new listing
-app.post("/listings", async (req, res) => {
-  const newListing = new Listing(req.body.listing);
-  await newListing.save();
-  res.redirect("/listings");
+app.post("/listings", async (req, res, next) => {
+  try {
+    const newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listings");
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Show Route - Show details of a listing
@@ -83,6 +87,11 @@ app.delete("/listings/:id", async (req, res) => {
     return res.status(404).send("Listing not found");
   }
   res.redirect("/listings");
+});
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+  res.send("Something Went Wrong !");
 });
 
 // Start Server
