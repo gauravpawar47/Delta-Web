@@ -3,5 +3,17 @@
     "init": "^0.1.2",
     "mongoose": "^8.13.2",
     "nodemon": "^3.1.9"
-  }
+  },
+  "name": "chapter-47---database-relationship",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
 }
