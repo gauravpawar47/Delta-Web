@@ -8,8 +8,8 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema } = require("./schema.js");
-
+const { listingSchema, reviewSchema } = require("./schema.js");
+const Review = require("./models/review");
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderLust";
 
 // Database Connection
@@ -47,12 +47,23 @@ app.get(
   })
 );
 
-// Validation for Schema (Middlewares)
+// Validation for Schema (Middlewares) - Listings
 const validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body);
   if (error) {
     let errMsg = error.details.map((el) => el.message).join(",");
     throw new ExpressError(400, error);
+  } else {
+    next();
+  }
+};
+
+// Validation for Schema (Middlewares) - Reviews
+const validateReview = (req, res, next) => {
+  let { error } = reviewSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(400, errMsg);
   } else {
     next();
   }
@@ -79,7 +90,7 @@ app.get(
   "/listings/:id",
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     if (!listing) {
       return res.status(404).send("Listing not found");
     }
@@ -121,6 +132,29 @@ app.delete(
       return res.status(404).send("Listing not found");
     }
     res.redirect("/listings");
+  })
+);
+
+// Reviews - Post
+app.post(
+  "/listings/:id/reviews",
+  validateReview,
+  wrapAsync(async (req, res) => {
+    const cleanId = req.params.id.trim(); // ← sanitize the ID
+    let listing = await Listing.findById(cleanId);
+
+    if (!listing) {
+      return res.status(404).send("Listing not found");
+    }
+
+    let newReview = new Review(req.body.review);
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();
+
+    console.log("New Review Saved !");
+    res.redirect(`/listings/${listing._id}`);
   })
 );
 
