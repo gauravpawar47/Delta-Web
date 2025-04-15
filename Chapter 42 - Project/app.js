@@ -10,14 +10,18 @@ const MONGO_URL = "mongodb://127.0.0.1:27017/wanderLust";
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
 const session = require("express-session");
+const flash = require("connect-flash");
 
 const sessionOptions = {
   secret: "mysecretcode",
   resave: false,
   saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 3,
+    maxAge: 1000 * 60 * 60 * 24 * 3,
+    httpOnly: true,
+  },
 };
-
-app.use(session(sessionOptions));
 
 // Database Connection
 async function main() {
@@ -38,6 +42,15 @@ app.use(express.static(path.join(__dirname, "/public")));
 // Root Route
 app.get("/", (req, res) => {
   res.send("Hi, I'm Root");
+});
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
 });
 
 app.use("/listings", listings);
