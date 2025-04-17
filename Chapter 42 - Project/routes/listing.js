@@ -5,19 +5,30 @@ const Listing = require("../models/listing");
 const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 const listingController = require("../controllers/listings.js");
 
-// Index Route - Show all listings
-router.get("/", wrapAsync(listingController.index));
+router
+  .route("/")
+  .get(wrapAsync(listingController.index)) // Index Route - Show all listings
+  .post(
+    isLoggedIn,
+    validateListing,
+    wrapAsync(listingController.createListing)
+  ); // Create Route - Add new listing
 
 // ✅ FIXED New Route (Avoids Conflict)
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
-// Create Route - Add new listing
-router.post(
-  "/",
-  isLoggedIn,
-  validateListing,
-  wrapAsync(listingController.createListing)
-);
+router
+  .route("/:id")
+  .put(
+    isLoggedIn,
+    isOwner,
+    validateListing,
+    wrapAsync(listingController.updateListing)
+  ) // Update Route - Update listing details
+
+  .delete(isLoggedIn, isOwner, wrapAsync(listingController.destroyListing)) // Delete Route - Delete a listing
+
+  .get(wrapAsync(listingController.showListing)); // Show Route - Show details of a listing
 
 // Edit Route - Show edit form
 router.get(
@@ -26,25 +37,5 @@ router.get(
   isOwner,
   wrapAsync(listingController.renderEditForm)
 );
-
-// Update Route - Update listing details
-router.put(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  validateListing,
-  wrapAsync(listingController.updateListing)
-);
-
-// Delete Route - Delete a listing
-router.delete(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  wrapAsync(listingController.destroyListing)
-);
-
-// Show Route - Show details of a listing
-router.get("/:id", wrapAsync(listingController.showListing));
 
 module.exports = router;
