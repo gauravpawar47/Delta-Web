@@ -14,8 +14,8 @@ const listingSchema = new Schema({
   country: String,
   reviews: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Review",
+      url: String,
+      filename: String,
     },
   ],
   owner: {
