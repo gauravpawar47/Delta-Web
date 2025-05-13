@@ -4,16 +4,23 @@ import { Description } from "./Description";
 import TaskManager from "./TaskManager";
 import ActivitiyManager from "../ActivityManager";
 import MainActivityManager from "./MainActivityManager";
+import Button from "./Button";
+import Form from "./Form";
+
 function App() {
   return (
     <div>
       <h1> Hello, student47 </h1>
-      <Title />
-      <Description />
+      {/* <Title />
+      <Description /> */}
       {/* <TaskManager />
       <ActivitiyManager /> */}
       
-      <MainActivityManager />
+      {/* <MainActivityManager /> */}
+
+      {/* <Button */}
+
+      <Form />
     </div>
   );
 }
