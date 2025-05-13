@@ -1,0 +1,30 @@
+.parent {
+  display: flex;
+  flex-direction: row; /* Ensures cards are side by side */
+  gap: 16px; /* Space between cards */
+  padding: 20px;
+  background-color: #1a1a1a;
+  border: 2px solid rgb(36, 36, 36);
+  border-radius: 10px;
+  overflow-x: auto; /* Optional: allows scrolling if content overflows */
+}
+
+.card {
+  /* border: 2px solid white; */
+  border-radius: 10px;
+  background-color: #131212;
+  padding: 16px;
+  color: white;
+  min-width: 250px; /* Optional: sets minimum width for each card */
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.new-price {
+  color: #4caf50;
+  font-weight: bold;
+}
+    
