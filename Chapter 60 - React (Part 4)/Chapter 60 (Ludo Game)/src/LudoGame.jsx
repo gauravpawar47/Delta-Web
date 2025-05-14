@@ -2,12 +2,15 @@ import { useState } from "react";
 
 export default function LudoGame() {
   const [moves, setMoves] = useState({ blue: 0, red: 0, yellow: 0, green: 0 });
+  const [arr, setArr] = useState(["no moves"]);
 
   const updateMove = (color) => {
     setMoves((prevMoves) => ({
       ...prevMoves,
       [color]: prevMoves[color] + 1,
     }));
+
+    setArr((prevArr) => [...prevArr, `${color} moves`]);
   };
 
   return (
@@ -45,6 +48,15 @@ export default function LudoGame() {
         >
           +1
         </button>
+
+        <div>
+          <h3>Move History:</h3>
+          <ul>
+            {arr.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
