@@ -1,15 +1,58 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Todo() {
-  let [todos, setTodos] = useState(["Sample Task"]);
-  let [newTodo, setNewTodo] = useState("");
+  const [todos, setTodos] = useState([
+    { task: "Sample Task", id: uuidv4(), isDone: false },
+  ]);
+  const [newTodo, setNewTodo] = useState("");
 
-  let addNewTask = () => {
-    setTodos([...todos, newTodo]);
+  const addNewTask = () => {
+    setTodos((prevTodos) => [
+      ...prevTodos,
+      { task: newTodo, id: uuidv4(), isDone: false },
+    ]);
+    setNewTodo("");
   };
 
-  let updateTodoValue = () => {
+  const updateTodoValue = (event) => {
     setNewTodo(event.target.value);
+  };
+
+  const deleteTodo = (id) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
+
+  const upperCaseAll = () => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => ({
+        ...todo,
+        task: todo.task.toUpperCase(),
+      }))
+    );
+  };
+
+  const updateTodo = (id) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            task: todo.task.toUpperCase(),
+          };
+        } else {
+          return todo;
+        }
+      })
+    );
+  };
+
+  const toggleDone = (id) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+      )
+    );
   };
 
   return (
@@ -18,7 +61,7 @@ export default function Todo() {
         placeholder="Add Task"
         value={newTodo}
         onChange={updateTodoValue}
-      ></input>{" "}
+      />{" "}
       <br /> <br />
       <button onClick={addNewTask}>Add</button>
       <br />
@@ -28,9 +71,28 @@ export default function Todo() {
       <h4>Tasks</h4>
       <ul>
         {todos.map((todo) => (
-          <li>{todo}</li>
+          <li key={todo.id}>
+            <span
+              style={{
+                textDecoration: todo.isDone ? "line-through" : "none",
+              }}
+            >
+              {todo.task}
+            </span>{" "}
+            &nbsp;
+            <button onClick={() => deleteTodo(todo.id)}>Delete</button> &nbsp;
+            <button onClick={() => updateTodo(todo.id)}>Update</button> &nbsp;
+            <button onClick={() => toggleDone(todo.id)}>
+              {todo.isDone ? "Undo" : "Done"}
+            </button>
+            <br />
+            <br />
+          </li>
         ))}
       </ul>
+      <br />
+      <br />
+      <button onClick={upperCaseAll}>Upper Case All</button>
     </div>
   );
 }

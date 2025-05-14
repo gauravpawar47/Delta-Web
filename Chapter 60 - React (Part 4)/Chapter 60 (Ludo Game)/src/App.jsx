@@ -9,7 +9,7 @@ function App() {
     <>
       {/* <LudoGame/> */}
       {/* <Todo /> */}
-      <TodoList />
+      <TodoList />  
     </>
   );
 }
