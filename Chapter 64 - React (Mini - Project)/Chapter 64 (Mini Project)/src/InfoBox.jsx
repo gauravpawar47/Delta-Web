@@ -2,11 +2,16 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import COLD from "@mui/icons-material/AcUnit";
+import HOT from "@mui/icons-material/Whatshot";
+import RAIN from "@mui/icons-material/Thunderstorm";
 import "./InfoBox.css";
 
 export default function InfoBox({ info }) {
-  const INIT_URL =
-    "https://images.unsplash.com/photo-1720639128406-5197cb67169a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGR1c2t5JTIwd2VhdGhlcnxlbnwwfHwwfHx8MA%3D%3D";
+  let weatherIcon;
+  if (info.humidity > 80) weatherIcon = <RAIN />;
+  else if (info.temp > 15) weatherIcon = <HOT />;
+  else weatherIcon = <COLD />;
 
   const COLD_URL =
     "https://images.unsplash.com/photo-1668531387310-9c3c2f272d52?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y29sZCUyMHdlYXRoZXJ8ZW58MHx8MHx8fDA%3D";
@@ -37,6 +42,7 @@ export default function InfoBox({ info }) {
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {info.city}
+              {weatherIcon}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               <br />
