@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind CSS Detailed Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="bg-gray-100 text-gray-900 p-10 space-y-12 font-sans">
+    <!-- Typography -->
+    <section class="space-y-4">
+      <h1 class="text-4xl font-bold">Typography</h1>
+
+      <div class="space-y-2">
+        <p class="text-xs">Text XS</p>
+        <p class="text-sm">Text SM</p>
+        <p class="text-base">Text BASE</p>
+        <p class="text-lg">Text LG</p>
+        <p class="text-xl">Text XL</p>
+        <p class="text-2xl font-semibold">Text 2XL with Semi-Bold</p>
+        <p class="text-3xl font-bold">Text 3XL with Bold</p>
+        <p class="text-4xl font-extrabold italic">
+          Text 4XL with Italic and Extra-Bold
+        </p>
+      </div>
+
+      <div class="space-y-2">
+        <p class="font-sans">Sans Font</p>
+        <p class="font-serif">Serif Font</p>
+        <p class="font-mono">Mono Font</p>
+      </div>
+
+      <div class="space-y-2">
+        <p class="uppercase">Uppercase</p>
+        <p class="lowercase">LOWERCASE</p>
+        <p class="capitalize">capitalize each word</p>
+        <p class="tracking-widest">Letter Spacing Wide</p>
+        <p class="leading-tight">Tight Line Height</p>
+        <p class="leading-loose">Loose Line Height</p>
+        <p class="text-center">Center Aligned</p>
+        <p class="text-right">Right Aligned</p>
+        <p class="text-left">Left Aligned</p>
+      </div>
+    </section>
+
+    <!-- Colors -->
+    <section class="space-y-4">
+      <h1 class="text-3xl font-bold">Colors</h1>
+      <div class="space-y-2">
+        <p class="text-red-600">Text Red</p>
+        <p class="text-green-600">Text Green</p>
+        <p class="text-blue-600">Text Blue</p>
+        <p class="bg-yellow-200 text-yellow-800 p-2 rounded">
+          Background Yellow
+        </p>
+        <p class="bg-indigo-300 text-indigo-900 p-2 rounded">
+          Background Indigo
+        </p>
+        <p class="border border-red-500 p-2">Border Red</p>
+      </div>
+    </section>
+
+    <!-- Spacing -->
+    <section class="space-y-4">
+      <h1 class="text-3xl font-bold">Spacing (Padding / Margin)</h1>
+      <div class="bg-white p-4 m-4 rounded shadow">
+        <p class="mb-2">Padding 4 (p-4)</p>
+        <p class="mt-4">Margin Top 4 (mt-4)</p>
+        <p class="mx-8">Horizontal Margin (mx-8)</p>
+        <p class="py-2">Vertical Padding (py-2)</p>
+      </div>
+    </section>
+
+    <!-- Width, Height -->
+    <section class="space-y-4">
+      <h1 class="text-3xl font-bold">Width & Height</h1>
+      <div class="bg-green-200 w-1/2 h-16">Width 50%, Height 4rem</div>
+      <div class="bg-blue-200 w-64 h-24 mt-2">
+        Width 16rem (w-64), Height 6rem
+      </div>
+    </section>
+
+    <!-- Borders, Radius, Shadow -->
+    <section class="space-y-4">
+      <h1 class="text-3xl font-bold">Borders, Radius, Shadow</h1>
+      <div class="p-4 border border-gray-400 rounded">Rounded border</div>
+      <div class="p-4 border-2 border-dashed border-blue-400 rounded-lg">
+        Dashed border
+      </div>
+      <div class="p-4 shadow-md bg-white">Shadow MD</div>
+      <div class="p-4 shadow-xl bg-white rounded-2xl">
+        Shadow XL with 2XL radius
+      </div>
+    </section>
+
+    <!-- Display, Positioning -->
+    <section class="space-y-4">
+      <h1 class="text-3xl font-bold">Display, Positioning</h1>
+      <div class="hidden sm:block bg-yellow-100 p-2">
+        Hidden on XS, visible on SM+
+      </div>
+      <div class="relative bg-pink-100 p-4">
+        <span class="absolute top-0 right-0 bg-red-500 text-white px-2 rounded"
+          >Badge</span
+        >
+        Positioned Badge
+      </div>
+    </section>
+
+    <!-- Flexbox -->
+    <section class="space-y-4">
+      <h1 class="text-3xl font-bold">Flexbox</h1>
+      <div class="flex justify-between items-center bg-white p-4 shadow">
+        <div class="bg-red-300 p-2">Box 1</div>
+        <div class="bg-green-300 p-2">Box 2</div>
+        <div class="bg-blue-300 p-2">Box 3</div>
+      </div>
+    </section>
+
+    <!-- Grid -->
+    <section class="space-y-4">
+      <h1 class="text-3xl font-bold">Grid</h1>
+      <div class="grid grid-cols-3 gap-4 bg-white p-4">
+        <div class="bg-purple-300 p-4">1</div>
+        <div class="bg-purple-400 p-4">2</div>
+        <div class="bg-purple-500 p-4">3</div>
+      </div>
+    </section>
+
+    <!-- Responsive -->
+    <section class="space-y-4">
+      <h1 class="text-3xl font-bold">Responsive (Resize screen)</h1>
+      <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+        This text size changes with screen size
+      </p>
+    </section>
+
+    <!-- Responsive Breakpoints -->
+    <section>
+      <h2 class="text-3xl font-bold mb-4">Responsive Breakpoints</h2>
+      <div class="bg-white p-4 shadow rounded space-y-2">
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+          Text Size Changes with Screen
+        </p>
+        <p
+          class="bg-red-200 sm:bg-orange-300 md:bg-yellow-300 lg:bg-green-300 xl:bg-blue-300 2xl:bg-indigo-300 p-2 rounded"
+        >
+          Background Color Changes with Breakpoints
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
+          <div class="bg-gray-200 box">XS</div>
+          <div class="bg-gray-300 box">SM</div>
+          <div class="bg-gray-400 box">MD</div>
+          <div class="bg-gray-500 box text-white">LG+</div>
+        </div>
+      </div>
+    </section>
+
+    
+  </body>
+</html>
