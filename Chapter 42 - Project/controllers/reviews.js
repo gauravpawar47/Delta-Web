@@ -8,13 +8,12 @@ module.exports.createReview = async (req, res) => {
   if (!listing) {
     return res.status(404).send("Listing not found");
   }
-
   const newReview = new Review(req.body.review);
   newReview.author = req.user._id;
-  listing.reviews.push(newReview);
-
-  await newReview.save();
-  await listing.save();
+  await newReview.save(); // First save review
+  
+  listing.reviews.push(newReview._id); // Then push only review._id
+  await listing.save(); // Then save listing
 
   req.flash("success", "New Review Created !");
   res.redirect(`/listings/${listing._id}`);
