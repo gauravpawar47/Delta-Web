@@ -10,17 +10,32 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderLust";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderLust";
+const DB_URL = process.env.ATLASDB_URL;
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
+const store = MongoStore.create({
+  mongoUrl: DB_URL,
+  crypto: {
+    secret: "mysecretcode",
+  },
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", () => {
+  console.log("Error in Mongo Session Store : ",err);
+});
+
 const sessionOptions = {
+  store: store,
   secret: "mysecretcode",
   resave: false,
   saveUninitialized: true,
@@ -33,7 +48,7 @@ const sessionOptions = {
 
 // Database Connection
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(DB_URL);
 }
 main()
   .then(() => console.log("Connected To Database"))
@@ -48,9 +63,9 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 // Root Route
-app.get("/", (req, res) => {
-  res.send("Hi, I'm Root");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hi, I'm Root");
+// });
 
 app.use(session(sessionOptions));
 app.use(flash());
