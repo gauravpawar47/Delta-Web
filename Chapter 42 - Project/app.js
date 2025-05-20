@@ -10,7 +10,6 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
-// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderLust";
 const DB_URL = process.env.ATLASDB_URL;
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
@@ -25,18 +24,18 @@ const User = require("./models/user.js");
 const store = MongoStore.create({
   mongoUrl: DB_URL,
   crypto: {
-    secret: "mysecretcode",
+    secret: process.env.SECRET,
   },
   touchAfter: 24 * 3600,
 });
 
 store.on("error", () => {
-  console.log("Error in Mongo Session Store : ",err);
+  console.log("Error in Mongo Session Store : ", err);
 });
 
 const sessionOptions = {
   store: store,
-  secret: "mysecretcode",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
